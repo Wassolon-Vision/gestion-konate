@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      // Remplacez par les e-mails de vos gérants
+      allow read, write: if request.auth != null
+        && request.auth.token.email in ['gerant1@exemple.com','gerant2@exemple.com'];
+    }
+  }
+}
